@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+ <meta charset="UTF-8"> 
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+<body style="background: #e7e7e7b3;">
+<center><h2> Mid day meal calculator </h2></center>
+
+<div>
+<center>
+<div style="background: aquamarine;width: -moz-fit-content;">
+<p>
+
+<font>enter attendance 1-5 :</font> <input id="a1" type="text" /><br><br>
+
+<font>enter attendance 6-8 :</font><input id="a2" type="text" /><br><br>
+
+<font>Pre Rice amt 1-5 :</font><input id="a3" type="text" /><br><br>
+
+<font>Pre Rice amt 6-8 :</font><input id="a4" type="text"  /> <br><br>
+
+<font>Pre cash amt 1-5 :</font><input id="a5" type="text"  /> <br><br>
+
+<font>Pre cashamt 6-8 :</font><input id="a6" type="text"  /> <br><br>
+
+</p>
+<button onclick= calculate()>submit</button>
+
+</div>
+</center>
+</div>
+
+<br><br>
+
+<center>
+<h3>Results</h3>
+<table class="tg" style="undefined;table-layout: fixed; width: 708px">
+<colgroup>
+<col style="width: 101px">
+<col style="width: 101px">
+<col style="width: 101px">
+<col style="width: 101px">
+<col style="width: 101px">
+<col style="width: 101px">
+<col style="width: 101px">
+<col style="width: 101px">
+</colgroup>
+  <tr>
+    <th class="tg-yw4l">Values</th>
+    <th class="tg-yw4l">Attendance</th>
+    <th class="tg-yw4l">Pre rice left<br></th>
+    <th class="tg-yw4l">rice used<br></th>
+    <th class="tg-yw4l">Next rice left<br></th>
+    <th class="tg-yw4l">Pre cash amount<br></th>
+    <th class="tg-yw4l">Cash used<br></th>
+    <th class="tg-yw4l">Cash left<br></th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> class 1-5</td>
+    <td class="tg-yw4l"> <div id="attdjun"></div></td>
+    <td class="tg-yw4l"> <div id="prericejun"></div></td>
+    <td class="tg-yw4l"> <div id="curricejun"></div></td>
+    <td class="tg-yw4l"> <div id="nextricejun"></div></td>
+    <td class="tg-yw4l"> <div id="precashjun"></div></td>
+    <td class="tg-yw4l"> <div id="curcashjun"></div></td>
+    <td class="tg-yw4l"> <div id="nextcashjun"></div></td>
+  </tr>
+<tr>
+    <td class="tg-yw4l"> class 6-8</td>
+    <td class="tg-yw4l"> <div id="attdsen"></div></td>
+    <td class="tg-yw4l"> <div id="prericesen"></div></td>
+    <td class="tg-yw4l"> <div id="curricesen"></div></td>
+    <td class="tg-yw4l"> <div id="nextricesen"></div></td>
+    <td class="tg-yw4l"> <div id="precashsen"></div></td>
+    <td class="tg-yw4l"> <div id="curcashsen"></div></td>
+    <td class="tg-yw4l"> <div id="nextcashsen"></div></td>
+  </tr>
+
+ <tr>
+    <td class="tg-yw4l"> Total</td>
+    <td class="tg-yw4l"><div id="attdtot"></div></td>
+     <td class="tg-yw4l"> <div id="prericetot"></div></td>
+    <td class="tg-yw4l"> <div id="curricetot"></div></td>
+    <td class="tg-yw4l"> <div id="nextricetot"></div></td>
+    <td class="tg-yw4l"> <div id="precashtot"></div></td>
+    <td class="tg-yw4l"> <div id="curcashtot"></div></td>
+    <td class="tg-yw4l"> <div id="nextcashtot"></div></td>
+   
+  </tr>
+</table>
+<center>
+
+
+</body>
+
+<script>
+calculate = function()
+{
+    var junatt = document.getElementById('a1').value;
+    var senatt = document.getElementById('a2').value;
+    var totatt = parseInt(junatt)+parseInt(senatt);
+
+    var junriceamt= 0.1;
+    var senriceamt= 0.15;
+    
+    var prejunrice = document.getElementById('a3').value; 
+    var presenrice = document.getElementById('a4').value; 
+
+    var curjunrice = junriceamt * parseInt(junatt);
+    var nextjunrice = prejunrice-curjunrice;
+
+    var cursenrice = senriceamt * parseInt(senatt);
+    var nextsenrice = presenrice-cursenrice;
+     
+    
+    var junrate = 4.13;
+    var senrate = 6.18;
+    
+    var prejuncash = document.getElementById('a5').value
+    var presencash = document.getElementById('a6').value;
+    
+    
+    var curjuncash = junrate * parseInt(junatt);
+    var nextjuncash = prejuncash-curjuncash;
+    
+    var cursencash = senrate * parseInt(senatt);
+    var nextsencash = presencash-cursencash;
+
+    var totcurcash= cursencash+curjuncash;
+    var totcurrice= cursenrice+curjunrice;
+    var totnextcash= nextjuncash+nextsencash;
+    var totnextrice= nextjunrice+nextsenrice;
+    
+    
+    document.getElementById('attdjun').innerHTML =junatt;
+    document.getElementById('attdsen').innerHTML =senatt;
+    document.getElementById('attdtot').innerHTML =parseInt(junatt)+parseInt(senatt);
+
+    document.getElementById('prericejun').innerHTML =prejunrice;
+    document.getElementById('prericesen').innerHTML =presenrice;
+    document.getElementById('prericetot').innerHTML =parseFloat(prejunrice)+parseFloat(presenrice);
+ 
+    document.getElementById('curricejun').innerHTML =curjunrice;
+    document.getElementById('curricesen').innerHTML =cursenrice;
+    document.getElementById('curricetot').innerHTML =parseFloat(curjunrice)+parseFloat(cursenrice);
+
+    document.getElementById('nextricejun').innerHTML =nextjunrice;
+    document.getElementById('nextricesen').innerHTML =nextsenrice;
+    document.getElementById('nextricetot').innerHTML =parseFloat(nextjunrice)+parseFloat(nextsenrice);
+
+    document.getElementById('precashjun').innerHTML =prejuncash;
+    document.getElementById('precashsen').innerHTML =presencash;
+    document.getElementById('precashtot').innerHTML =parseFloat(prejuncash)+parseFloat(presencash);
+
+    document.getElementById('curcashjun').innerHTML =curjuncash;
+    document.getElementById('curcashsen').innerHTML =cursencash;
+    document.getElementById('curcashtot').innerHTML =parseFloat(curjuncash)+parseFloat(cursencash);
+    
+    
+    document.getElementById('nextcashjun').innerHTML =nextjuncash;
+    document.getElementById('nextcashsen').innerHTML =nextsencash;
+    document.getElementById('nextcashtot').innerHTML =parseFloat(nextjuncash)+parseFloat(nextsencash);
+
+  
+     
+   }
+</script>
+</html>
